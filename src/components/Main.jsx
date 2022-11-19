@@ -10,9 +10,9 @@ import Tabel from './Tabel';
 const Container = styled.div`
     padding: 0 40px;
     margin-left: 250px;
+    flex: 100%;
 
     @media (max-width: 1200px) {
-        flex: 100%;
         margin-left: 0;
     }
 `;
