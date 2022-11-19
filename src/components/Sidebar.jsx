@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiUsers } from 'react-icons/fi';
+import PropTypes from 'prop-types';
 import ButtonSideBar from './ButtonSideBar';
 import Logo from './Logo';
 import SidebarTitle from './SidebarTitle';
@@ -10,12 +11,19 @@ const Aside = styled.aside`
   padding: 50px 24px;
   padding-bottom: 250px;
   height: 100vh;
+  z-index: 1;
   overflow-y: scroll;
-  flex: 0.2;
-  min-width: 200px;
-
-  @media (max-width: 1000px) {
-    display: none;
+  min-width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  @media (max-width: 1200px) {
+      display: none;
+      
+      &.show {
+        display: block;
+    }
   }
 `;
 
@@ -29,11 +37,11 @@ const styleIcon = {
     color: '#ffffff',
 };
 
-function Sidebar() {
+function Sidebar({ toggle, handleToggleFalse }) {
     return (
-        <Aside>
+        <Aside className={toggle ? 'show' : ''}>
             <CenterLogo>
-                <Logo />
+                <Logo handleToggleFalse={handleToggleFalse} />
             </CenterLogo>
             <SidebarTitle>Daily Use</SidebarTitle>
             <ButtonSideBar icon={<FiUsers size={18} style={styleIcon} />}>
@@ -42,5 +50,10 @@ function Sidebar() {
         </Aside>
     );
 }
+
+Sidebar.propTypes = {
+    toggle: PropTypes.bool.isRequired,
+    handleToggleFalse: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

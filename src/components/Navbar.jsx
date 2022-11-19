@@ -12,10 +12,12 @@ const Container = styled.nav`
     padding: 40px 0;
 `;
 
-function Navbar({ handleUserSeacrh, userSearch }) {
+function Navbar({
+    handleUserSeacrh, userSearch, handleToggle,
+}) {
     return (
         <Container>
-            <HumburgerBtn />
+            <HumburgerBtn handleToggle={handleToggle} />
             <NavTitle>Overview</NavTitle>
             <Searchbar handleUserSeacrh={handleUserSeacrh} userSearch={userSearch} />
             <Bell />
@@ -26,6 +28,7 @@ function Navbar({ handleUserSeacrh, userSearch }) {
 Navbar.propTypes = {
     handleUserSeacrh: PropTypes.func.isRequired,
     userSearch: PropTypes.string.isRequired,
+    handleToggle: PropTypes.func.isRequired,
 };
 
 export default Navbar;

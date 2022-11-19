@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import LogoIcon from '../assets/img/global/logo.svg';
+import Exit from '../assets/img/global/times.svg';
 
 const Container = styled.div`
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    width: fit-content;
 `;
 
 const LogoTitle = styled.h1`
@@ -18,13 +19,28 @@ const LogoTitle = styled.h1`
     margin-left: 16px;
 `;
 
-function Logo() {
+const CloseBtn = styled.img`
+    display: none;
+    @media (max-width: 1200px) {
+        margin-left: 1rem;
+        cursor: pointer;
+        transform: rotate(45deg);
+        display: block;
+    }
+`;
+
+function Logo({ handleToggleFalse }) {
     return (
         <Container>
             <img src={LogoIcon} alt="Logo Brand" />
             <LogoTitle>Solubis</LogoTitle>
+            <CloseBtn src={Exit} onClick={handleToggleFalse} />
         </Container>
     );
 }
+
+Logo.propTypes = {
+    handleToggleFalse: PropTypes.func.isRequired,
+};
 
 export default Logo;
